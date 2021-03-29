@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PetStonks</title>
+<!--  ./ = Same file, ../ = 1 file above   -->
+
+
+<!--link bootstrap-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--  Load Icon library  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Particles.js -->
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/1.18.1/tsparticles.min.js"
+  integrity="sha512-PYHWDEuXOTJ9MZ+/QHqkbgiEYZ+LImQv3i/9NyYOABFvK37e4q4Wg7aQDN1JpoGiEu1TYZh6JMrZluZox2gbDA=="
+  crossorigin="anonymous"></script>
+ <link rel="stylesheet" type="text/css" href="./main.css">
+
+</head>
+
+<body>
+
+    <div id="tsparticles" class="particles"></div>
+    
+    <div class="navbar">
+      <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+      <a href="#"><i class="fa fa-fw fa-search"></i> Search</a>
+      <a href="./contact.html"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+      <a href="./register.html"><i class="fa fa-fw fa-user"></i> Register</a>
+    </div>
+
+    <h1 id ="title">PetStonks</h1>
+
+    <div class ="login_container">
+      <form>
+          <form>
+              <label for="email">Email:</label>
+              <input type="email" id="email" required name="email"><br>
+                <label for="pwd">Password:</label>
+                <input type="password" id="pwd" required name="pwd"><br>
+            <input type="submit" value="Submit">
+          </form>
+      </form>
+      </div>
+
+    <!--  Particles Config  -->
+     
+    <script>
+        const particles = {
+          "fpsLimit": 60,
+          "particles": {
+            "number": {
+              "value": 80,
+              "density": {
+                "enable": true,
+                "value_area": 800
+              }
+            },
+            "color": {
+              "value": "#ff0000",
+              "animation": {
+                "enable": true,
+                "speed": 20,
+                "sync": true
+              }
+            },
+            "shape": {
+              "type": "star",
+              "stroke": {
+                "width": 0
+              },
+              "polygon": {
+                "nb_sides": 5
+              },
+            },
+            "opacity": {
+              "value": 0.5,
+              "random": false,
+              "anim": {
+                "enable": false,
+                "speed": 3,
+                "opacity_min": 0.1,
+                "sync": false
+              }
+            },
+            "size": {
+              "value": 3,
+              "random": true,
+              "anim": {
+                "enable": false,
+                "speed": 20,
+                "size_min": 0.1,
+                "sync": false
+              }
+            },
+            "links": {
+              "enable": true,
+              "distance": 100,
+              "color": "#ffffff",
+              "opacity": 0.4,
+              "width": 1
+            },
+            "move": {
+              "enable": true,
+              "speed": 6,
+              "direction": "none",
+              "random": false,
+              "straight": false,
+              "out_mode": "out",
+              "attract": {
+                "enable": false,
+                "rotateX": 600,
+                "rotateY": 1200
+              }
+            }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": {
+                "enable": true,
+                "mode": "grab"
+              },
+              "onclick": {
+                "enable": true,
+                "mode": "push"
+              },
+              "resize": true
+            },
+            "modes": {
+              "grab": {
+                "distance": 200,
+                "line_linked": {
+                  "opacity": 1
+                }
+              },
+              "bubble": {
+                "distance": 400,
+                "size": 40,
+                "duration": 2,
+                "opacity": 0.8
+              },
+              "repulse": {
+                "distance": 200
+              },
+              "push": {
+                "particles_nb": 4
+              },
+              "remove": {
+                "particles_nb": 2
+              }
+            }
+          },
+          "retina_detect": true,
+          "background": {
+            "color": "#white",
+            "image": "",
+            "position": "100% 100%",
+            "repeat": "no-repeat",
+            "size": "cover"
+          }
+        };
+
+        tsParticles.load('tsparticles',particles);
+      </script>
+            
+    </body>
+</body>
+</html>

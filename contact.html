@@ -1,0 +1,49 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="./main.css">
+</head>
+
+
+
+<header>
+<h2>How can we help you? :)</h2>
+</header>
+
+
+<body>
+<div class="contact_body">
+  <form action="action_page.php">
+
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" required name="firstname" placeholder="Your name..">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" required name="lastname" placeholder="Your last name..">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required name="email" placeholder= "Your Email Address..">
+        <br>
+
+    <label for="support_type">Support Type</label>
+    <select id="support_type" name="support_type">
+      <option value="#">Account</option>
+      <option value="#">Login</option>
+      <option value="#">Logout</option>
+    </select>
+
+    <label for="subject">Query</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+
+  </form>
+</div>
+
+
+<button onclick="goBack()">Go Back</button>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+
+</body>
