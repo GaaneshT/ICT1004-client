@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>PetStonks</title>
-<!--  ./ = Same file, ../ = 1 file above   -->
+
 
 
 <!--link bootstrap-->
@@ -16,12 +16,15 @@
   crossorigin="anonymous"></script>
  <link rel="stylesheet" type="text/css" href="./main.css">
 
+
+ <script src="./register1.js" defer></script>
+ <script src="https://kit.fontawesome.com/802010470c.js" crossorigin="anonymous"></script>
+ <link rel="stylesheet" type="text/css" href="./register1.css">
+
 </head>
 
 <body>
-
     <div id="tsparticles" class="particles"></div>
-    
     <div class="navbar">
       <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
       <a href="#"><i class="fa fa-fw fa-search"></i> Search</a>
@@ -29,19 +32,53 @@
       <a href="./register.html"><i class="fa fa-fw fa-user"></i> Register</a>
     </div>
 
-    <h1 id ="title">PetStonks</h1>
-
-    <div class ="login_container">
-      <form>
-          <form>
-              <label for="email">Email:</label>
-              <input type="email" id="email" required name="email"><br>
-                <label for="pwd">Password:</label>
-                <input type="password" id="pwd" required name="pwd"><br>
-            <input type="submit" value="Submit">
+      <div class="container" id="container">
+        <div class="form-container sign-up-container">
+          <form action="#">
+            <h1>Create Account</h1>
+            <div class="social-container">
+              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your email for registration</span>
+            <input type="text" placeholder="Name" />
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <button>Sign Up</button>
           </form>
-      </form>
+        </div>
+        <div class="form-container sign-in-container">
+          <form action="#">
+            <h1>Sign in</h1>
+            <div class="social-container">
+              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your account</span>
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <a href="#">Forgot your password?</a>
+            <button>Sign In</button>
+          </form>
+        </div>
+        <div class="overlay-container">
+          <div class="overlay">
+            <div class="overlay-panel overlay-left">
+              <h1>Welcome Back!</h1>
+              <p>To keep connected with us please login with your personal info</p>
+              <button class="ghost" id="signIn">Sign In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+              <h1>Hello, Friend!</h1>
+              <p>Enter your personal details and start journey with us</p>
+              <button class="ghost" id="signUp">Sign Up</button>
+            </div>
+          </div>
+        </div>
       </div>
+
 
     <!--  Particles Config  -->
      
