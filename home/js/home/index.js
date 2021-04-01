@@ -1,5 +1,27 @@
-// Hard-code login without form
-let BASE_URL = 'http://localhost';
+const BASE_URL = 'http://34.193.147.252';
+
+/*
+ * Load the user profile
+ */
+async function loadUserProfile() {
+    let url = BASE_URL + '/api/users/profile';
+
+    let response = await fetch(url, { headers: { _token: localStorage._token } });
+    let data = await response.json();
+
+    if (!data.err) {
+        let user = data.user;
+
+        let profileImgEl = document.querySelector('.user-pic img');
+        let nameEl = document.querySelector('.user-name');
+        let emailEl = document.querySelector('.user-email');
+        profileImgEl.src = user.profile_image_url ? user.profile_image_url : '/img/test-profile-img.jpg';
+        nameEl.innerText = user.first_name;
+        emailEl.innerText = user.email;
+    } else {
+        Swal.fire(data.msg);
+    }
+}
 
 /*
  * Requires bootstrap CSS.
@@ -96,6 +118,7 @@ async function initializeNewsFeed(elementSelector) {
 
         if (count == 0) {
             isNewsFeedEnd = true;
+            return;
         }
 
         // Form the HTML and add to container
@@ -192,4 +215,5 @@ async function initializeNewsFeed(elementSelector) {
 }
 
 // News feed initialization is done in login function
-// initializeNewsFeed('#posts');
+loadUserProfile();
+// initializeNewsFeed('#posts'); /* COMMENT THIS OUT DURING HTML TESTING SO THE CONTENT DOESN'T GET ERASED */

@@ -8,10 +8,12 @@
     <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
     <title>Sidebar template</title>
 
+    <!-- Redirect if not logged in -->
+    <script>if(!localStorage._token) window.location.href = '/';</script>
+
     <!-- using online links -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
 
     <link rel="stylesheet" href="/css/home/profile.css">
     <link rel="stylesheet" href="/css/home/posts-section.css">
@@ -19,6 +21,7 @@
 
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
 
+    <script src="js/libs/sweetalert2.all.min.js"></script>
     <script src="js/home/index.js" defer></script>
 </head>
 
@@ -33,13 +36,13 @@
                 <!-- sidebar-header  -->
                 <div class="sidebar-item sidebar-header d-flex flex-nowrap">
                     <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="img/user.jpg" alt="User picture">
+                        <img class="img-responsive img-rounded" src="" alt="User picture">
                     </div>
                     <div class="user-info">
                         <span class="user-name">Ben
                             <strong>Dover</strong>
                         </span>
-                        <span class="user-role">Administrator</span>
+                        <span class="user-email"></span>
                         <span class="user-status">
                             <i class="fa fa-circle"></i>
                             <span>Online</span>
@@ -338,33 +341,7 @@
             <div id="overlay" class="overlay"></div>
             <div class="container-fluid p-5">
                 <!-- News feed -->
-                <div id="posts">
-                    <div class="post" data-post-id="${post.id}">
-                        <img src="${getUserProfileImage(post.user)}" class="post-profile-image" width="100px">
-                        <a href="javascript:void(0)" class="post-profile-username">${post.user.first_name + ' ' + post.user.last_name}</a>
-                        <br> Category: ${post.category}
-                        <br>
-                        <p class="post-content">${post.content}</p>
-                        <div class="post-images-container row">
-                            <div class="col-sm-6">
-                                <img class="post-image" src="${BASE_URL}${image.post_image_url}">
-                            </div>
-                            <div class="col-sm-6">
-                                <img class="post-image" src="${BASE_URL}${image.post_image_url}">
-                            </div>
-                            <div class="col-sm-6">
-                                <img class="post-image" src="${BASE_URL}${image.post_image_url}">
-                            </div>
-                            <div class="col-sm-6">
-                                <img class="post-image" src="${BASE_URL}${image.post_image_url}">
-                            </div>
-                        </div>
-                        <div>
-                            <button class="btn-like" data-post-id="${post.id}" data-liked="${post.is_liked}"><img src="${getLikeIconSrc(post.is_liked)}" alt="Heart"></button> <span class="num-likes">${post.num_likes}</span>
-                        </div>
-                        <p>Posted on ${post.created_at}</p>
-                    </div>
-                </div>
+                <div id="posts"></div>
             </div>
         </main>
         <!-- page-content" -->

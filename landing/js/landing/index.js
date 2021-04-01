@@ -1,3 +1,5 @@
+const BASE_URL = 'http://34.193.147.252';
+
 /* Login form */
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
@@ -10,8 +12,6 @@ signUpButton.addEventListener('click', () => {
 signInButton.addEventListener('click', _ => {
     container.classList.remove("right-panel-active");
 });
-
-const BASE_URL = 'http://localhost';
 
 async function login(e) {
     let asd;
@@ -38,7 +38,8 @@ async function login(e) {
     if (!data.err) {
         /* Save token to localStorage */
         localStorage._token = data._token;
-
+        // console.log(localStorage._token);
+        // console.log(data._token);
         /* Redirect to posts page */
         window.location.href = '/home';
     } else {
@@ -86,7 +87,7 @@ async function signup(e) {
         signInButton.click();
 
     } else {
-        window.alert('err.msg');
+        Swal.fire(data.msg);
     }
 }
 
