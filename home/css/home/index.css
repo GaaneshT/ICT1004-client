@@ -1,0 +1,43 @@
+.center {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+body {
+    background: rgb(200, 200, 0);
+}
+
+
+/* Top navbar */
+
+#navbar {
+    display: flex;
+    background: orange;
+    min-height: 30px;
+    padding: 15px;
+}
+
+#navbar .left {
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#navbar .right {
+    align-self: flex-end;
+}
+
+
+/* For my scrolling plugin */
+
+#posts {
+    width: 100%;
+    height: calc(100vh - 30px);
+    overflow-y: scroll;
+}
