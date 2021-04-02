@@ -1,4 +1,4 @@
-const BASE_URL = 'http://34.193.147.252';
+const BASE_URL = 'https://petstonks.ml';
 
 /*
  * Load the user profile
