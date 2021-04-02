@@ -15,9 +15,17 @@ async function loadUserProfile() {
         let profileImgEl = document.querySelector('.user-pic img');
         let nameEl = document.querySelector('.user-name');
         let emailEl = document.querySelector('.user-email');
-        profileImgEl.src = user.profile_image_url ? user.profile_image_url : '/img/test-profile-img.jpg';
+        if (user.profile_image_url != null) {
+          profileImgEl.src = user.profile_image_url ? user.profile_image_url : '/img/test-profile-img.jpg';
+        } else {
+          var newimg ="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+          profileImgEl.src = newimg;
+        }
         nameEl.innerText = user.first_name;
-        emailEl.innerText = user.email;
+        //emailEl.innerText = user.email;
+        document.getElementById("firstnamechange").value = user.first_name;
+        document.getElementById("lastnamechange").value = user.last_name;
+        document.getElementById("biographychange").value = user.biography;
     } else {
         Swal.fire(data.msg);
     }
