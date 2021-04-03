@@ -1,4 +1,18 @@
-const BASE_URL = 'https://petstonks.ml';
+let production = false;
+let BASE_URL;
+
+/*
+ * Do variables setup
+ */
+(function() {
+    if (production) {
+        /* For production when deployed to server */
+        BASE_URL = '';
+    } else {
+        /* To ease local development */
+        BASE_URL = 'https://petstonks.ml';
+    }
+})();
 
 /*
  * Load the user profile
@@ -16,10 +30,10 @@ async function loadUserProfile() {
         let nameEl = document.querySelector('.user-name');
         let emailEl = document.querySelector('.user-email');
         if (user.profile_image_url != null) {
-          profileImgEl.src = user.profile_image_url ? user.profile_image_url : '/img/test-profile-img.jpg';
+            profileImgEl.src = user.profile_image_url ? user.profile_image_url : '/img/test-profile-img.jpg';
         } else {
-          var newimg ="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-          profileImgEl.src = newimg;
+            var newimg = "https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            profileImgEl.src = newimg;
         }
         nameEl.innerText = user.first_name;
         //emailEl.innerText = user.email;
