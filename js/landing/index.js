@@ -1,4 +1,18 @@
-const BASE_URL = 'https://petstonks.ml';
+let production = false;
+let BASE_URL;
+
+/*
+ * Do variables setup
+ */
+(function() {
+    if (production) {
+        /* For production when deployed to server */
+        BASE_URL = '';
+    } else {
+        /* To ease local development */
+        BASE_URL = 'https://petstonks.ml';
+    }
+})();
 
 /* Login form */
 const signUpButton = document.getElementById('signUp');
@@ -14,7 +28,6 @@ signInButton.addEventListener('click', _ => {
 });
 
 async function login(e) {
-    let asd;
     e.preventDefault();
     /* get inputs */
     let form = document.querySelector('.sign-in-container form');
@@ -41,7 +54,7 @@ async function login(e) {
         // console.log(localStorage._token);
         // console.log(data._token);
         /* Redirect to posts page */
-        window.location.href = '/home';
+        window.location.href = '/home.html';
     } else {
         window.alert(data.msg);
     }
