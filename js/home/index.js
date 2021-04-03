@@ -1,6 +1,5 @@
 let production = false;
 let BASE_URL;
-
 /*
  * Do variables setup
  */
@@ -44,6 +43,29 @@ async function loadUserProfile() {
         Swal.fire(data.msg);
     }
 }
+
+let upd = document.querySelector('#updateprofile');
+upd.addEventListener('submit', updateprofile);
+async function updateprofile(e) {
+    e.preventDefault();
+
+    let form = document.querySelector('#updateprofile');
+    let body = new FormData(form);
+    let url = BASE_URL+'/api/users/updateProfile';
+    console.log(localStorage._token);
+    let response = await fetch(url, {
+        headers: {_token: localStorage._token} ,  
+        body,
+        method: 'post'
+    });
+    let data = await response.json();
+
+    if (!data.err) {
+      document.getElementById("upderror").innerHTML="Success";
+    } else {
+      document.getElementById("upderror").innerHTML=data.msg;
+    }
+};
 
 /*
  * Requires bootstrap CSS.
@@ -238,4 +260,4 @@ async function initializeNewsFeed(elementSelector) {
 
 // News feed initialization is done in login function
 loadUserProfile();
-// initializeNewsFeed('#posts'); /* COMMENT THIS OUT DURING HTML TESTING SO THE CONTENT DOESN'T GET ERASED */
+initializeNewsFeed('#posts'); /* COMMENT THIS OUT DURING HTML TESTING SO THE CONTENT DOESN'T GET ERASED */

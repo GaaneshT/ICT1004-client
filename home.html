@@ -37,7 +37,7 @@
                 </div>
                 <!-- sidebar-header  -->
                 <div class="sidebar-item sidebar-header d-flex flex-nowrap">
-                    <div class="user-pic">
+                    <div data-toggle="modal" data-target="#uploadModal" class="user-pic">
                         <img class="img-responsive img-rounded" src="" alt="User picture">
                     </div>
                     <div class="user-info">
@@ -181,16 +181,16 @@
                             <span>Extra</span>
                         </li>
                         <li>
-                            <a href="#">
+                            <a data-toggle="modal" data-target="#myModal" href="#">
                                 <i class="fa fa-book"></i>
-                                <span class="menu-text">Documentation</span>
+                                <span class="menu-text">Edit Profile</span>
                                 <span class="badge badge-pill badge-primary">Beta</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
                                 <i class="fa fa-calendar"></i>
-                                <span class="menu-text">Calendar</span>
+                                <span data-toggle="modal" data-target="#uploadModal" class="menu-text">Change Profile Picture</span>
                             </a>
                         </li>
                         <li>
@@ -348,6 +348,64 @@
         </main>
         <!-- page-content" -->
     </div>
+    <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Profile</h4>
+        </div>
+        <div class="modal-body">
+        <form id="updateprofile">
+        <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input type="text" class="form-control" name="firstnamechange" id="firstnamechange" aria-describedby="firstnamechange" placeholder="Change First Name" value="">
+        </div>
+        <div class="form-group">
+        <label for="lastname">last Name</label>
+        <input type="text" class="form-control" name="lastnamechange" id="lastnamechange" aria-describedby="lastnamechange" placeholder="Change Last Name" value="">
+        </div>
+        <div class="form-group">
+        <label for="bio">Biography</label>
+        <input type="text" class="form-control" name="biographychange" id="biographychange" aria-describedby="biographychange" placeholder="Change Biography" value="">
+        </div>
+        <p id="upderror"></p>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div id="uploadModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">File upload form</h4>
+        </div>
+        <div class="modal-body">
+          <!-- Form -->
+          <form id="changeimg">
+            Select file : <input type='file' name='profile_image' id='file' class='form-control' ><br>
+            <input type='submit' class='btn btn-info' value='Upload' id='btn_upload'>
+            <p id="imgerror"></p>
+          </form>
+  
+          <!-- Preview-->
+          <div id='preview'></div>
+        </div>
+   
+      </div>
+  
+    </div>
+  </div>   
     <!-- page-wrapper -->
 
     <!-- using online scripts -->

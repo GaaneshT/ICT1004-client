@@ -78,6 +78,11 @@
     }
 }
 
+.modal-header .close {
+    padding: 1rem;
+    margin: -1rem -1rem -1rem;
+}
+
 .sidebar-wrapper {
     width: 280px;
     height: 100%;
@@ -110,7 +115,6 @@
 .sidebar-wrapper .sidebar-content {
     max-height: calc(100% -35px);
     height: calc(100% - 35px);
-    overflow-y: scroll;
     position: relative;
 }
 
@@ -502,6 +506,38 @@
 body {
     font-size: .9rem;
 }
+
+.user-pic .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #808080	;
+    }
+    
+.user-pic:hover .overlay {
+    opacity: 0.9;
+}
+
+.overlay {
+    position: absolute; 
+    bottom: 0; 
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    color: #f1f1f1; 
+    width: 100%;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+  }
 
 
 /*----------------page-wrapper----------------*/
