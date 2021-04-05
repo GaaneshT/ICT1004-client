@@ -261,3 +261,54 @@ async function initializeNewsFeed(elementSelector) {
 // News feed initialization is done in login function
 loadUserProfile();
 initializeNewsFeed('#posts'); /* COMMENT THIS OUT DURING HTML TESTING SO THE CONTENT DOESN'T GET ERASED */
+
+jQuery(function ($) {
+
+    $(".sidebar-dropdown > a").click(function() {
+    $(".sidebar-submenu").slideUp(200);
+    if (
+    $(this)
+        .parent()
+        .hasClass("active")
+    ) {
+    $(".sidebar-dropdown").removeClass("active");
+    $(this)
+        .parent()
+        .removeClass("active");
+    } else {
+    $(".sidebar-dropdown").removeClass("active");
+    $(this)
+        .next(".sidebar-submenu")
+        .slideDown(200);
+    $(this)
+        .parent()
+        .addClass("active");
+    }
+});
+
+$("#close-sidebar").click(function() {
+    $(".page-wrapper").removeClass("toggled");
+});
+$("#show-sidebar").click(function() {
+    $(".page-wrapper").addClass("toggled");
+});
+
+    
+});
+
+function readURL(input) {
+if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+    $('#preview').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+}
+}
+
+$("#file").change(function() {
+    readURL(this);
+    document.getElementById("preview").style.display = "block";
+});

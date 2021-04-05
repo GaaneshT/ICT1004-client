@@ -29,11 +29,17 @@
 
 <body>
     <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
+        <a id="show-sidebar" class="btn btn-L btn-dark sticky" href="#">
+            <i class="fas fa-bars"></i>
+          </a>
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
                 <div class="sidebar-item sidebar-brand">
-                    <a href="#">pro sidebar</a>
+                    <a href="#">Pet$tonks</a>
+                    <div id="close-sidebar">
+                        <i class="fas fa-times"></i>
+                    </div>
                 </div>
                 <!-- sidebar-header  -->
                 <div class="sidebar-item sidebar-header d-flex flex-nowrap">
@@ -201,6 +207,8 @@
                         </li>
                     </ul>
                 </div>
+                <br>
+                <br>
                 <!-- sidebar-menu  -->
             </div>
             <!-- sidebar-footer  -->
@@ -358,9 +366,9 @@
         </div>
         <div class="modal-body">
         <form id="updateprofile">
-        <div class="form-group">
-        <label for="firstname">First Name</label>
-        <input type="text" class="form-control" name="firstnamechange" id="firstnamechange" aria-describedby="firstnamechange" placeholder="Change First Name" value="">
+            <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input type="text" class="form-control" name="firstnamechange" id="firstnamechange" aria-describedby="firstnamechange" placeholder="Change First Name" value="">
         </div>
         <div class="form-group">
         <label for="lastname">last Name</label>
@@ -395,6 +403,7 @@
           <form id="changeimg">
             Select file : <input type='file' name='profile_image' id='file' class='form-control' ><br>
             <input type='submit' class='btn btn-info' value='Upload' id='btn_upload'>
+            <img id="preview" class="previewimg" src="#"style="display: none;" alt="imagepreview " />
             <p id="imgerror"></p>
           </form>
   
