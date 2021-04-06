@@ -31,7 +31,7 @@ async function loadUserProfile() {
         if (user.profile_image_url != null) {
             profileImgEl.src = user.profile_image_url ? user.profile_image_url : '/img/test-profile-img.jpg';
         } else {
-            var newimg = "https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            var newimg = '/img/icons/icon-user.jpg';
             profileImgEl.src = newimg;
         }
         nameEl.innerText = user.first_name;
@@ -51,19 +51,19 @@ async function updateprofile(e) {
 
     let form = document.querySelector('#updateprofile');
     let body = new FormData(form);
-    let url = BASE_URL+'/api/users/updateProfile';
+    let url = BASE_URL + '/api/users/updateProfile';
     console.log(localStorage._token);
     let response = await fetch(url, {
-        headers: {_token: localStorage._token} ,  
+        headers: { _token: localStorage._token },
         body,
         method: 'post'
     });
     let data = await response.json();
 
     if (!data.err) {
-      document.getElementById("upderror").innerHTML="Success";
+        document.getElementById("upderror").innerHTML = "Success";
     } else {
-      document.getElementById("upderror").innerHTML=data.msg;
+        document.getElementById("upderror").innerHTML = data.msg;
     }
 };
 
@@ -262,50 +262,63 @@ async function initializeNewsFeed(elementSelector) {
 loadUserProfile();
 initializeNewsFeed('#posts'); /* COMMENT THIS OUT DURING HTML TESTING SO THE CONTENT DOESN'T GET ERASED */
 
-jQuery(function ($) {
+jQuery(function($) {
 
     $(".sidebar-dropdown > a").click(function() {
-    $(".sidebar-submenu").slideUp(200);
-    if (
-    $(this)
-        .parent()
-        .hasClass("active")
-    ) {
-    $(".sidebar-dropdown").removeClass("active");
-    $(this)
-        .parent()
-        .removeClass("active");
-    } else {
-    $(".sidebar-dropdown").removeClass("active");
-    $(this)
-        .next(".sidebar-submenu")
-        .slideDown(200);
-    $(this)
-        .parent()
-        .addClass("active");
-    }
-});
+        $(".sidebar-submenu").slideUp(200);
+        if (
+            $(this)
+            .parent()
+            .hasClass("active")
+        ) {
+            $(".sidebar-dropdown").removeClass("active");
+            $(this)
+                .parent()
+                .removeClass("active");
+        } else {
+            $(".sidebar-dropdown").removeClass("active");
+            $(this)
+                .next(".sidebar-submenu")
+                .slideDown(200);
+            $(this)
+                .parent()
+                .addClass("active");
+        }
+    });
 
-$("#close-sidebar").click(function() {
-    $(".page-wrapper").removeClass("toggled");
-});
-$("#show-sidebar").click(function() {
-    $(".page-wrapper").addClass("toggled");
-});
+    $("#close-sidebar").click(function() {
+        $(".page-wrapper").removeClass("toggled");
+    });
+    $("#show-sidebar").click(function() {
+        $(".page-wrapper").addClass("toggled");
+    });
 
-    
+    /* Event listener for logout */
+    /* Event listener for logout button */
+    let btnLogout = document.getElementById('btn-logout');
+    btnLogout.addEventListener('click', async function(e) {
+        e.preventDefault();
+
+        let url = BASE_URL + '/api/users/logout';
+        let _ = await fetch(url, {
+            method: 'POST',
+            headers: { _token: localStorage._token }
+        });
+        localStorage.removeItem('_token');
+        window.location.href = '/';
+    });
 });
 
 function readURL(input) {
-if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    
-    reader.onload = function(e) {
-    $('#preview').attr('src', e.target.result);
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#preview').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
-    
-    reader.readAsDataURL(input.files[0]); // convert to base64 string
-}
 }
 
 $("#file").change(function() {
