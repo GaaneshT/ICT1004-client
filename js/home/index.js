@@ -6,7 +6,7 @@ let BASE_URL;
 (function() {
     if (production) {
         /* For production when deployed to server */
-        BASE_URL = '';
+        BASE_URL = 'http://localhost';
     } else {
         /* To ease local development */
         BASE_URL = 'https://petstonks.ml';
@@ -29,7 +29,7 @@ async function loadUserProfile() {
         let nameEl = document.querySelector('.user-name');
         let emailEl = document.querySelector('.user-email');
         if (user.profile_image_url != null) {
-            profileImgEl.src = user.profile_image_url ? user.profile_image_url : '/img/test-profile-img.jpg';
+            profileImgEl.src = user.profile_image_url ? BASE_URL + user.profile_image_url : '/img/test-profile-img.jpg';
         } else {
             var newimg = '/img/icons/icon-user.jpg';
             profileImgEl.src = newimg;
@@ -52,7 +52,6 @@ async function updateprofile(e) {
     let form = document.querySelector('#updateprofile');
     let body = new FormData(form);
     let url = BASE_URL + '/api/users/updateProfile';
-    console.log(localStorage._token);
     let response = await fetch(url, {
         headers: { _token: localStorage._token },
         body,
@@ -155,7 +154,6 @@ async function initializeNewsFeed(elementSelector) {
         let data = await response.json();
         hidePostsLoading();
 
-        console.log(data);
         let count = data.retrieved_count;
         let posts = data.posts;
         nextPostToRequest += count;
@@ -237,7 +235,6 @@ async function initializeNewsFeed(elementSelector) {
             likeButton.addEventListener('click', likeButtonListener);
         }
 
-        console.log('nextPostToRequest: ' + nextPostToRequest);
         isLoading = false;
     };
 
@@ -293,35 +290,71 @@ jQuery(function($) {
         $(".page-wrapper").addClass("toggled");
     });
 
-    /* Event listener for logout */
-    /* Event listener for logout button */
-    let btnLogout = document.getElementById('btn-logout');
-    btnLogout.addEventListener('click', async function(e) {
-        e.preventDefault();
-
-        let url = BASE_URL + '/api/users/logout';
-        let _ = await fetch(url, {
-            method: 'POST',
-            headers: { _token: localStorage._token }
-        });
-        localStorage.removeItem('_token');
-        window.location.href = '/';
-    });
 });
 
-function readURL(input) {
+/* Event listener for logout button */
+let btnLogout = document.getElementById('btn-logout');
+btnLogout.addEventListener('click', async function(e) {
+    e.preventDefault();
+
+    let url = BASE_URL + '/api/users/logout';
+    let _ = await fetch(url, {
+        method: 'POST',
+        headers: { _token: localStorage._token }
+    });
+    localStorage.removeItem('_token');
+    window.location.href = '/';
+});
+
+/* Profile image upload preview */
+function previewImage(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-
         reader.onload = function(e) {
             $('#preview').attr('src', e.target.result);
         }
-
         reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
 }
 
 $("#file").change(function() {
-    readURL(this);
-    document.getElementById("preview").style.display = "block";
+    previewImage(this);
+    $('#preview').css('display', 'block').attr('src', '/img/loading.gif');
+});
+
+/* Profile image upload */
+$('#changeimg').submit(async function(e) {
+    e.preventDefault();
+    let form = this;
+    let input = $('#file')[0];
+    if (!input.files) {
+        Swal.fire('Please select a file.');
+    } else {
+        console.log(this);
+        let formData = new FormData(this);
+        let url = BASE_URL + '/api/users/update/profile-image';
+        let response = await fetch(url, {
+            method: 'POST',
+            body: formData,
+            headers: { _token: localStorage._token }
+        });
+        let data = await response.json();
+        if (data.err) {
+            Swal.fire(data.msg);
+        } else {
+            /* Change the profile image on main page */
+            let img = document.getElementById('profile-image-main');
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+            $('#uploadModal').modal('hide');
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Your profile image has been changed.'
+            });
+        }
+    }
 });

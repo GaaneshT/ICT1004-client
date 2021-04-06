@@ -77,17 +77,18 @@
         opacity: 0;
     }
 }
-.sticky{
+
+.sticky {
     position: sticky;
 }
+
 .modal-header .close {
     padding: 1rem;
     margin: -1rem -1rem -1rem;
 }
 
 .previewimg {
-    display:none;
-
+    display: none;
 }
 
 .sidebar-wrapper {
@@ -525,27 +526,28 @@ body {
     width: 100%;
     opacity: 0;
     transition: .5s ease;
-    background-color: #808080	;
-    }
-    
+    background-color: #808080;
+}
+
 .user-pic:hover .overlay {
     opacity: 0.9;
 }
 
 .overlay {
-    position: absolute; 
-    bottom: 0; 
+    position: absolute;
+    bottom: 0;
     background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.5); /* Black see-through */
-    color: #f1f1f1; 
+    background: rgba(0, 0, 0, 0.5);
+    /* Black see-through */
+    color: #f1f1f1;
     width: 100%;
     transition: .5s ease;
-    opacity:0;
+    opacity: 0;
     color: white;
     font-size: 20px;
     padding: 20px;
     text-align: center;
-  }
+}
 
 
 /*----------------page-wrapper----------------*/
@@ -679,7 +681,8 @@ body {
 
 /*----------sidebar background images --------------*/
 
-.sidebar-bg.bg1 .sidebar-wrapper {
+
+/* .sidebar-bg.bg1 .sidebar-wrapper {
     background-image: url(/img/bg1.jpg);
 }
 
@@ -709,7 +712,7 @@ body {
 
 [data-bg="bg4"] {
     background-image: url(/img/bg4.jpg);
-}
+} */
 
 
 /*---- border-radius ------*/
@@ -1495,39 +1498,48 @@ body {
     box-shadow: 0px -1px 5px rgba(236, 236, 236, 0.8);
     border-top: 1px solid white;
 }
+
+
 /*------scroll bar---------------------*/
 
 ::-webkit-scrollbar {
     width: 5px;
     height: 7px;
 }
+
 ::-webkit-scrollbar-button {
- width: 0px; 
- height: 0px; 
+    width: 0px;
+    height: 0px;
 }
+
 ::-webkit-scrollbar-thumb {
- background: #525965; 
- border: 0px none #ffffff; 
- border-radius: 0px; 
+    background: #525965;
+    border: 0px none #ffffff;
+    border-radius: 0px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-background: #525965;
+    background: #525965;
 }
+
 ::-webkit-scrollbar-thumb:active {
-background: #525965;
+    background: #525965;
 }
+
 ::-webkit-scrollbar-track {
-background: transparent;
-border: 0px none #ffffff;
-border-radius: 50px;
+    background: transparent;
+    border: 0px none #ffffff;
+    border-radius: 50px;
 }
+
 ::-webkit-scrollbar-track:hover {
-background: transparent;
+    background: transparent;
 }
+
 ::-webkit-scrollbar-track:active {
-background: transparent;
+    background: transparent;
 }
+
 ::-webkit-scrollbar-corner {
     background: transparent;
 }
-  

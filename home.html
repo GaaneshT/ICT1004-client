@@ -44,7 +44,7 @@
                 <!-- sidebar-header  -->
                 <div class="sidebar-item sidebar-header d-flex flex-nowrap">
                     <div data-toggle="modal" data-target="#uploadModal" class="user-pic">
-                        <img class="img-responsive img-rounded" src="/img/icons/icon-user.jpg" alt="User picture">
+                        <img id="profile-image-main" class="img-responsive img-rounded" src="/img/icons/icon-user.jpg" alt="User picture">
                     </div>
                     <div class="user-info">
                         <span class="user-name">Ben
@@ -396,19 +396,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">File upload form</h4>
+                    <h4 class="modal-title">Change profile image</h4>
                 </div>
                 <div class="modal-body">
                     <!-- Form -->
                     <form id="changeimg">
-                        Select file : <input type='file' name='profile_image' id='file' class='form-control'><br>
-                        <input type='submit' class='btn btn-info' value='Upload' id='btn_upload'>
+                        Select file : <input type="file" name="profile_image" id="file" class="form-control">
+                        <br>
                         <img id="preview" class="previewimg" src="#" style="display: none;" alt="imagepreview " />
+                        <br>
+                        <input type="submit" class="btn btn-info" value="Upload" id="btn_upload">
                         <p id="imgerror"></p>
                     </form>
-
-                    <!-- Preview-->
-                    <div id='preview'></div>
                 </div>
 
             </div>
@@ -418,18 +417,18 @@
     <!-- page-wrapper -->
 
     <!-- using online scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js " integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut " crossorigin="anonymous ">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js " integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k " crossorigin="anonymous ">
     </script>
-    <script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js "></script>
 
     <!-- using local scripts -->
-    <!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> -->
+    <!-- <script src="../node_modules/jquery/dist/jquery.min.js "></script>
+    <script src="../node_modules/popper.js/dist/umd/popper.min.js "></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js "></script>
+    <script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js "></script> -->
 
 </body>
 

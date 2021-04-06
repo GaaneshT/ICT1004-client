@@ -41,3 +41,11 @@ body {
     height: calc(100vh - 30px);
     overflow-y: scroll;
 }
+
+
+/* Update profile image modal */
+
+#preview {
+    max-width: 100%;
+    margin: 0 auto;
+}
