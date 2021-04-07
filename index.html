@@ -35,7 +35,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#About">About Us</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Partners</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -77,12 +77,13 @@
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
                         <h1>Welcome Back!</h1>
-                        <p>To keep connected with us please login with your personal info</p>
+                        <p>Log back in to see your favorite pets!</p>
                         <button class="ghost" id="signIn">Sign In</button>
                     </div>
                     <div class="overlay-panel overlay-right">
-                        <h1>Hello, Friend!</h1>
-                        <p>Enter your personal details and start journey with us</p>
+                        <h1>Hello, Pet Lover!</h1>
+                        <p>Sign up to see cool cats, dodgy dogs, edgy elephants(maybe), and much more!
+                        </p>
                         <button class="ghost" id="signUp">Sign Up</button>
                     </div>
                 </div>
@@ -246,7 +247,8 @@
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Contact Us</h2>
-                <h3 class="section-subheading text-muted">Tell Us!</h3>
+                <h3 class="section-subheading text-muted">Have a paw-blem? Purrfect! Please do hesitate to let us know how we may assist you and your petting needs. Don't hesitate to let us know how fun it is
+                </h3>
             </div>
             <form id="contactForm" name="sentMessage" novalidate="novalidate">
                 <div class="row align-items-stretch mb-5 inner-wrapper">
