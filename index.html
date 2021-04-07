@@ -82,8 +82,7 @@
                     </div>
                     <div class="overlay-panel overlay-right">
                         <h1>Hello, Pet Lover!</h1>
-                        <p>Sign up to see cool cats, dodgy dogs, edgy elephants(maybe), and much more!
-                        </p>
+                        <p>Sign up to see dool cats, dodgy dogs, edgy elephants(maybe), and much more!</p>
                         <button class="ghost" id="signUp">Sign Up</button>
                     </div>
                 </div>
@@ -95,7 +94,15 @@
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">About Us</h2>
-                <h3 class="section-subheading text-muted">Pet$tonks is something too amazing to write about therefore it shall be written later.</h3>
+                <h3 class="section-subheading text-muted">We are a pet sharing and trading facilitator!
+                    Feel free to contact us for more information about our services or report any issues.
+                    
+                    Happy sharing!
+                    
+                    We would like to thank our course coordinator Prof. Scott Jones for his continued guidance through the creation of this dank website.
+                    
+                    #$tonks
+                    </h3>
             </div>
             <div class="row text-center">
                 <div class="col-md-4">
@@ -104,7 +111,7 @@
                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                         </span>
                     <h4 class="my-3">Purchase/Sell</h4>
-                    <p class="text-muted">Tired of your pet or interested in getting a new one? Buy or Sell pets your pets here :></p>
+                    <p class="text-muted">Tired of your pet or interested in getting a new one? Buy or Sell your pets here :></p>
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
@@ -112,7 +119,7 @@
                             <i class="fas fa-heart fa-stack-1x fa-inverse"></i>
                         </span>
                     <h4 class="my-3">Adopt</h4>
-                    <p class="text-muted">Wanna be a nice guy and give some poor homeless orphans a place to stay? Come and adopt yourself a pet today</p>
+                    <p class="text-muted">Wanna be a kind soul and give a poor homeless pet a place to stay? Come and adopt yourself a pet today</p>
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
@@ -200,8 +207,8 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="img/team/1.jpg" alt="" />
-                        <h4>George</h4>
+                        <img class="mx-auto rounded-circle" src="img/team/2.jpg" alt="" />
+                        <h4>Gaanesh</h4>
                         <p class="text-muted">Lead Designer and everything else</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
@@ -210,8 +217,8 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="img/team/1.jpg" alt="" />
-                        <h4>George</h4>
+                        <img class="mx-auto rounded-circle" src="img/team/3.jpg" alt="" />
+                        <h4>Kenneth</h4>
                         <p class="text-muted">Lead Designer and everything else</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
@@ -219,11 +226,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-lg-4 align-middle">
                     <div class="team-member justify-content-center">
-                        <img class="mx-auto rounded-circle" src="img/team/1.jpg" alt="" />
-                        <h4>George</h4>
+                        <img class="mx-auto rounded-circle" src="img/team/4.jpg" alt="" />
+                        <h4>Chee Hean</h4>
                         <p class="text-muted">Lead Designer and everything else</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
@@ -232,8 +239,8 @@
                 </div>
                 <div class="col-lg-4 align-middle">
                     <div class="team-member align-middle">
-                        <img class="mx-auto rounded-circle" src="img/team/1.jpg" alt="" />
-                        <h4>George</h4>
+                        <img class="mx-auto rounded-circle" src="img/team/5.jpg" alt="" />
+                        <h4>Jonathan</h4>
                         <p class="text-muted">Lead Designer and everything else</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
@@ -247,7 +254,7 @@
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Contact Us</h2>
-                <h3 class="section-subheading text-muted">Have a paw-blem? Purrfect! Please do hesitate to let us know how we may assist you and your petting needs. Don't hesitate to let us know how fun it is
+                <h3 class="section-subheading text-muted">Have a paw-blem? Purrfect! Please do hesitate to let us know how we may assist you and your petting needs!
                 </h3>
             </div>
             <form id="contactForm" name="sentMessage" novalidate="novalidate">
@@ -343,8 +350,8 @@
                                     await their forever homes, there are plenty of ways to show you care.</p>
                                 <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
-                                    </button>
+                                        Close 
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -362,19 +369,15 @@
                         <div class="col-lg-8">
                             <div class="modal-body">
                                 <!-- Project Details Go Here-->
-                                <h2 class="text-uppercase">Project Name</h2>
-                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <h2 class="text-uppercase">OSCAS</h2>
+                                <p class="item-intro text-muted">Oasis Second Chance Animal Shelter</p>
                                 <img class="img-fluid d-block mx-auto" src="img/portfolio/03-full.jpg" alt="" />
-                                <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate,
-                                    maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                <ul class="list-inline">
-                                    <li>Date: January 2020</li>
-                                    <li>Client: Finish</li>
-                                    <li>Category: Identity</li>
-                                </ul>
+                                <p>Oasis Second Chance Animal Shelter (OSCAS) is a registered charity and non-profit dog shelter that has been in existence since 2006. All the dogs in the shelter are mongrels rescued from the streets or from being culled.
+
+												About 100 Singapore Specials call this shelter home and needless to say, it can only be sustained with help from trusty volunteers and kind donations or sponsorships.</p>
                                 <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Close 
                                     </button>
                             </div>
                         </div>
