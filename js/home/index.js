@@ -13,6 +13,45 @@ let BASE_URL;
     }
 })();
 
+/*tinymce.init({
+    selector: '#content',
+    theme: 'modern',
+    add_form_submit_trigger : false,
+    mobile: {
+      theme: 'mobile',
+      plugins: [ 'autosave', 'lists', 'autolink' ],
+      toolbar: [ 'undo', 'bold', 'italic', 'styleselect' ]
+    }
+  }); */
+  
+/*
+ * createpost
+ */
+let cp = document.querySelector('#createpost');
+cp.addEventListener('submit', createpost);
+async function createpost(e) {
+    e.preventDefault();
+
+    let form = document.querySelector('#createpost');
+    console.log(form);
+    let body = new FormData(form);
+    let url = BASE_URL + '/api/posts/create';
+    let response = await fetch(url, {
+        headers: { _token: localStorage._token },
+        body,
+        method: 'post'
+    });
+    let data = await response.json();
+
+    if (!data.err) {
+        console.log(data);
+        document.getElementById("posterror").innerHTML = "Success";
+    } else {
+        Swal.fire(data.msg);
+    }
+};
+
+
 /*
  * Load the user profile
  */
@@ -61,8 +100,10 @@ async function updateprofile(e) {
 
     if (!data.err) {
         document.getElementById("upderror").innerHTML = "Success";
+        Swal.fire(data.msg);
     } else {
         document.getElementById("upderror").innerHTML = data.msg;
+        Swal.fire(data.msg);
     }
 };
 
@@ -309,19 +350,24 @@ btnLogout.addEventListener('click', async function(e) {
 });
 
 /* Profile image upload preview */
-function previewImage(input) {
+function previewImage(input , id) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
-            $('#preview').attr('src', e.target.result);
+            $(id).attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
 }
 
 $("#file").change(function() {
-    previewImage(this);
     $('#preview').css('display', 'block').attr('src', '/img/loading.gif');
+    previewImage(this, "#preview");
+});
+
+$("#post_image").change(function() {
+    $('#postpreview').css('display', 'block').attr('src', '/img/loading.gif');
+    previewImage(this, "#postpreview");
 });
 
 /* Profile image upload */
