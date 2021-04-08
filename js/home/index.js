@@ -1,4 +1,4 @@
-let production = false;
+let production = true;
 let BASE_URL;
 /*
  * Do variables setup
@@ -6,14 +6,14 @@ let BASE_URL;
 (function() {
     if (production) {
         /* For production when deployed to server */
-        BASE_URL = 'http://localhost';
+        BASE_URL = 'https://petstonks.ml';
     } else {
         /* To ease local development */
         BASE_URL = 'https://petstonks.ml';
     }
 })();
 
-  
+
 /*
  * createpost
  */
@@ -23,7 +23,6 @@ async function createpost(e) {
     e.preventDefault();
 
     let form = document.querySelector('#createpost');
-    console.log(form);
     let body = new FormData(form);
     let url = BASE_URL + '/api/posts/create';
     let response = await fetch(url, {
@@ -34,7 +33,8 @@ async function createpost(e) {
     let data = await response.json();
 
     if (!data.err) {
-        Swal.fire({icon: 'success', text: 'Success!'}); 
+        $('#createpostmodal').modal('hide');
+        Swal.fire({ icon: 'success', text: 'Success!' });
     } else {
         Swal.fire(data.msg);
     }
@@ -44,6 +44,7 @@ async function createpost(e) {
 /*
  * Load the user profile
  */
+let user;
 async function loadUserProfile() {
     let url = BASE_URL + '/api/users/profile';
 
@@ -51,7 +52,7 @@ async function loadUserProfile() {
     let data = await response.json();
 
     if (!data.err) {
-        let user = data.user;
+        user = data.user;
 
         let profileImgEl = document.querySelector('.user-pic img');
         let nameEl = document.querySelector('.user-name');
@@ -62,13 +63,26 @@ async function loadUserProfile() {
             var newimg = '/img/icons/icon-user.jpg';
             profileImgEl.src = newimg;
         }
-        nameEl.innerText = user.first_name;
+        nameEl.innerText = user.last_name ? user.first_name + ' ' + user.last_name : user.first_name;
         //emailEl.innerText = user.email;
         document.getElementById("firstnamechange").value = user.first_name;
         document.getElementById("lastnamechange").value = user.last_name;
         document.getElementById("biographychange").value = user.biography;
+
+        /* User email verified status */
+        let circle = document.querySelector('.sidebar-wrapper .sidebar-header .user-info .user-status i');
+        let statusEl = document.querySelector('.user-status span');
+        if (user.verified) {
+            circle.style.color = '#5cb85c';
+            statusEl.innerText = 'Verified';
+        } else {
+            circle.style.color = 'red';
+            statusEl.innerText = 'Not verified';
+        }
     } else {
-        Swal.fire(data.msg);
+        // Invalid token
+        window.location.href = '/';
+        localStorage.removeItem('_token');
     }
 }
 
@@ -88,7 +102,11 @@ async function updateprofile(e) {
     let data = await response.json();
 
     if (!data.err) {
-        Swal.fire({icon: 'success', text: 'Success!'}); 
+        $('#myModal').modal('hide');
+        Swal.fire({
+            icon: 'success',
+            text: 'Success!'
+        });
     } else {
         document.getElementById("upderror").innerHTML = data.msg;
         Swal.fire(data.msg);
@@ -191,15 +209,15 @@ async function initializeNewsFeed(elementSelector) {
             isNewsFeedEnd = true;
             return;
         }
-        posts= posts.reverse();
+
         // Form the HTML and add to container
         for (let post of posts) {
+            // console.log(post);
             let html = `
-            <div class="post" data-post-id="${post.id}">
-            <div class="post-profile-image-wrapper">
-                <img src="${getUserProfileImage(post.user)}" class="post-profile-image">
-            </div>
-            <a href="javascript:void(0)" class="post-profile-username">${post.user.first_name + ' ' + post.user.last_name}</a>
+            <div class="post" data-post-id="${post.id}" data-user-id="${post.user_id}">
+            ${post.user_id == user.id ? '<button class="img-btn"><img src="/img/icons/icon-trash.png"></button>' : ''}
+            <img src="${getUserProfileImage(post.user)}" class="post-profile-image" width="100px">
+            <a href="javascript:void(0)" class="post-profile-username">${post.user.last_name ? post.user.first_name + ' ' + post.user.last_name : post.user.first_name}</a>
             <br>
             Category: ${post.category}
             <br>
@@ -218,7 +236,8 @@ async function initializeNewsFeed(elementSelector) {
 
         // Make images expandable - The function is in util.js
         let postElements = document.getElementsByClassName('post');
-        for (let i = nextPostToRequest - postsPerRequest + 1; i < postElements.length; i++) {
+        let i = (nextPostToRequest - postsPerRequest) < 0 ? 0 : (nextPostToRequest - postsPerRequest);
+        for (; i < postElements.length; i++) {
             let post = postElements[i];
             let images = post.getElementsByClassName('post-image');
             for (let j = 0; j < images.length; j++) {
@@ -261,9 +280,49 @@ async function initializeNewsFeed(elementSelector) {
 
         // Attach click event listener to the like button
         let likeButtons = document.getElementsByClassName('btn-like');
-        for (let i = 0; i < likeButtons.length; i++) {
+        i = (nextPostToRequest - postsPerRequest) < 0 ? 0 : (nextPostToRequest - postsPerRequest);
+        for (; i < likeButtons.length; i++) {
+
             let likeButton = likeButtons[i];
             likeButton.addEventListener('click', likeButtonListener);
+        }
+
+        const deleteButtonListener = async e => {
+            let button = e.target;
+            let postContainer = button.parentNode;
+            while (!postContainer.classList.contains('post')) {
+                postContainer = postContainer.parentNode;
+            }
+            let postId = postContainer.dataset.postId;
+            let url = BASE_URL + '/api/posts/delete?id=' + postId;
+            let response = await fetch(url, {
+                method: 'DELETE',
+                headers: { _token: localStorage._token }
+            });
+            let data = await response.json();
+
+            // Success?
+            if (data.err) {
+                Swal.fire({
+                    icon: 'error',
+                    text: data.msg
+                });
+            } else {
+                console.log('test');
+                console.log(postContainer);
+                let $postContainer = $(postContainer);
+                $postContainer.animate({
+                    height: 0,
+                    opacity: 0
+                }, 500, function() {
+                    postContainer.parentNode.removeChild(postContainer);
+                });
+            }
+        };
+        /* Attach the event listeners */
+        let deleteButtons = document.querySelectorAll('.post .img-btn');
+        for (let i = 0; i < deleteButtons.length; i++) {
+            deleteButtons[i].addEventListener('click', deleteButtonListener);
         }
 
         isLoading = false;
@@ -274,8 +333,9 @@ async function initializeNewsFeed(elementSelector) {
         if (isNewsFeedEnd) {
             container.removeEventListener('scroll', scrollListener);
         }
-        // Load more posts if the scroll has hit the bottom
-        if (container.scrollTop >= (container.scrollHeight - container.offsetHeight) && !isLoading) {
+        // Load more posts if the scroll has hit the bottom, with some leeway
+        const leeway = 200;
+        if (container.scrollTop >= (container.scrollHeight - container.offsetHeight - leeway) && !isLoading) {
             loadImages();
         }
     };
@@ -287,8 +347,66 @@ async function initializeNewsFeed(elementSelector) {
 }
 
 // News feed initialization is done in login function
-loadUserProfile();
-initializeNewsFeed('#posts'); /* COMMENT THIS OUT DURING HTML TESTING SO THE CONTENT DOESN'T GET ERASED */
+(async function() {
+    let _ = await loadUserProfile();
+    var checkpost = document.getElementById("posts");
+    if(checkpost  != null){
+    _ = await initializeNewsFeed('#posts'); /* COMMENT THIS OUT DURING HTML TESTING SO THE CONTENT DOESN'T GET ERASED */
+    } else {
+        initializefollow()
+    }
+
+})();
+async function initializefollow() {
+        let url = '/api/users';
+        let followUrl = '/api/users/follow';
+        let listener = async function(e) {
+                let button = e.target;
+                let userToFollow = button.dataset.userId;
+                let formData = new FormData();
+                formData.append('user_to_follow', userToFollow);
+                let response = await fetch(followUrl, {
+                    method: 'POST',
+                    headers: {_token: localStorage._token},
+                    body: formData
+                });
+                let data = await response.json();
+                if(data.err) {
+                    window.alert('Not logged in');
+                } else {
+                    window.alert('Followed');
+                }
+        };
+            (async function() {
+                let response = await fetch(url);
+                let users = await response.json();
+                let ul = document.querySelector('#followall');
+                for (let user of users) {
+                    if (user.profile_image_url ==null){
+                        var imgfile= `${BASE_URL}/img/default-profile-image.png`;
+                    } else{
+                        var imgfile= `${BASE_URL}${user.profile_image_url}`;
+                    }
+                    let html = `
+                    <div class="user"  data-user-id="${user.user_id}">
+                    <img src="${imgfile}" class="post-profile-image" width="100px">
+                    <a href="javascript:void(0)" class="post-profile-username">${user.last_name ? user.first_name + ' ' + user.last_name : user.first_name}</a>
+                        <br>
+                            BIO: ${user.biography}
+                        <br>
+                        <div>
+                            <button class="btn-like" id="follow" data-user-id="${user.id}">Follow</button>
+                        </div>
+                    </div>
+                    `;
+                    ul.innerHTML += html;
+                }
+                let buttons = document.querySelectorAll('button');
+                for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].addEventListener('click', listener);
+                }
+            })();
+        }
 
 jQuery(function($) {
 
@@ -338,7 +456,7 @@ btnLogout.addEventListener('click', async function(e) {
 });
 
 /* Profile image upload preview */
-function previewImage(input , id) {
+function previewImage(input, id) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
